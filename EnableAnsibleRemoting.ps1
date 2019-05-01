@@ -7,10 +7,8 @@ $file = "$env:temp\Upgrade-PowerShell.ps1"
 (New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force
 
-# version can be 3.0, 4.0 or 5.1
+# update powershell version to 5.1
 &$file -Version 5.1 -Username $username -Password $password -Verbose
-
-Set-ExecutionPolicy -ExecutionPolicy Restricted -Force
 
 $reg_winlogon_path = "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon"
 Set-ItemProperty -Path $reg_winlogon_path -Name AutoAdminLogon -Value 0
@@ -25,4 +23,4 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 
 powershell.exe -ExecutionPolicy ByPass -File $file
 
-Set-ExecutionPolicy unrestricted -Force
+winrm enumerate winrm/config/Listener
