@@ -19,7 +19,7 @@ Add to ARM template under "resources":
           "fileUris": [
             "https://raw.githubusercontent.com/davidrsensi/EnableAnsibleRemotingARM/master/EnableAnsibleRemoting.ps1"
           ],
-          "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -file EnableAnsibleRemoting.ps1 ', parameters('adminUserName'), ' ', parameters('adminPassword'))]"
+          "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -file EnableAnsibleRemoting.ps1"
         }
       }
     }
