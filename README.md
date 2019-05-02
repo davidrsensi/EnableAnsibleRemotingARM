@@ -4,11 +4,11 @@ Add to ARM template under "resources":
 ```
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(variables('vmName1'),'/CustomScriptExtension')]",
+      "name": "[concat(variables('vmName'),'/CustomScriptExtension')]",
       "apiVersion": "2015-05-01-preview",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName1'))]"
+        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
       ],
       "properties": {
         "publisher": "Microsoft.Compute",
@@ -19,7 +19,7 @@ Add to ARM template under "resources":
           "fileUris": [
             "https://raw.githubusercontent.com/davidrsensi/EnableAnsibleRemotingARM/master/EnableAnsibleRemoting.ps1"
           ],
-          "commandToExecute": "[concat('powershell.exe -file EnableAnsibleRemoting.ps1 ', parameters('adminName'), ' ', parameters('adminPassword'))]"
+          "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -file EnableAnsibleRemoting.ps1 ', parameters('adminUserName'), ' ', parameters('adminPassword'))]"
         }
       }
     }
